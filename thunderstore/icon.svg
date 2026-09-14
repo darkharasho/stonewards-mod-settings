@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a4540"/>
+      <stop offset="1" stop-color="#1f1c19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.45" r="0.55">
+      <stop offset="0" stop-color="#e0a346" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#e0a346" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe08a"/>
+      <stop offset="1" stop-color="#c8862e"/>
+    </linearGradient>
+    <linearGradient id="knob" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b2f25"/>
+      <stop offset="1" stop-color="#231b15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Chiselled stone tile -->
+  <rect x="0" y="0" width="256" height="256" rx="36" fill="#15130f"/>
+  <rect x="8" y="8" width="240" height="240" rx="30" fill="url(#stone)"/>
+  <path d="M8 90 L70 78 L120 96 L180 80 L248 92 M8 176 L60 168 L110 184 L190 170 L248 180 M70 78 L64 8 M180 80 L186 8 M110 184 L104 248 M190 170 L196 248"
+        stroke="#15130f" stroke-opacity="0.45" stroke-width="3" fill="none"/>
+  <rect x="8" y="8" width="240" height="240" rx="30" fill="url(#glow)"/>
+  <rect x="8" y="8" width="240" height="240" rx="30" fill="none" stroke="#6b6158" stroke-width="3"/>
+
+  <!-- Slider tracks -->
+  <g stroke-linecap="round" stroke-width="12">
+    <path d="M52 72 H204" stroke="#15130f"/>
+    <path d="M52 128 H204" stroke="#15130f"/>
+    <path d="M52 184 H204" stroke="#15130f"/>
+    <path d="M52 72 H150" stroke="url(#gold)"/>
+    <path d="M52 128 H92" stroke="url(#gold)"/>
+    <path d="M52 184 H176" stroke="url(#gold)"/>
+  </g>
+
+  <!-- Slider knobs -->
+  <g stroke="url(#gold)" stroke-width="6" fill="url(#knob)">
+    <circle cx="150" cy="72" r="20"/>
+    <circle cx="92" cy="128" r="20"/>
+    <circle cx="176" cy="184" r="20"/>
+  </g>
+</svg>

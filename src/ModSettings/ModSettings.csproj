@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>ModSettings</AssemblyName>
+    <RootNamespace>ModSettings</RootNamespace>
+    <Version>0.1.0</Version>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <!-- Machine-specific paths. Override in Local.props (gitignored) or with -p:GamePath=... -->
+  <Import Project="$(MSBuildThisFileDirectory)../../Local.props" Condition="Exists('$(MSBuildThisFileDirectory)../../Local.props')" />
+
+  <PropertyGroup>
+    <GamePath Condition="'$(GamePath)' == ''">/var/mnt/data/SteamLibrary/steamapps/common/Stonewards</GamePath>
+    <ProfilePath Condition="'$(ProfilePath)' == ''">$(HOME)/.config/r2modmanPlus-local/Stonewards/profiles/Default</ProfilePath>
+    <ManagedPath>$(GamePath)/Stonewards_Data/Managed</ManagedPath>
+    <BepInExCorePath>$(ProfilePath)/BepInEx/core</BepInExCorePath>
+    <DeployPath>$(ProfilePath)/BepInEx/plugins/darkharasho-ModSettings</DeployPath>
+  </PropertyGroup>
+
+  <!-- Without the game installed (CI), or with -p:UseRefs=true, build against the reference
+       assemblies from scripts/update-refs.sh. -->
+  <PropertyGroup Condition="'$(UseRefs)' == 'true' Or !Exists('$(ManagedPath)/Assembly-CSharp.dll')">
+    <ManagedPath>$(MSBuildThisFileDirectory)../../lib/refs</ManagedPath>
+    <BepInExCorePath>$(MSBuildThisFileDirectory)../../lib/refs</BepInExCorePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx" HintPath="$(BepInExCorePath)/BepInEx.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(BepInExCorePath)/0Harmony.dll" Private="false" />
+    <Reference Include="Assembly-CSharp" HintPath="$(ManagedPath)/Assembly-CSharp.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(ManagedPath)/UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedPath)/UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="UnityEngine.InputLegacyModule" HintPath="$(ManagedPath)/UnityEngine.InputLegacyModule.dll" Private="false" />
+    <Reference Include="UnityEngine.TextRenderingModule" HintPath="$(ManagedPath)/UnityEngine.TextRenderingModule.dll" Private="false" />
+    <Reference Include="UnityEngine.UIElementsModule" HintPath="$(ManagedPath)/UnityEngine.UIElementsModule.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="DeployToProfile" AfterTargets="Build" Condition="Exists('$(ProfilePath)/BepInEx/plugins')">
+    <MakeDir Directories="$(DeployPath)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DeployPath)" />
+    <Message Importance="high" Text="Deployed $(TargetFileName) to $(DeployPath)" />
+  </Target>
+
+</Project>

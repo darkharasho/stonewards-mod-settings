@@ -1,0 +1,9 @@
+{
+    "name": "ModSettings",
+    "version_number": "0.1.0",
+    "website_url": "https://github.com/darkharasho/stonewards-mod-settings",
+    "description": "One in-game settings menu for all your mods. Adds a Mods button to the pause menu for changing any mod's config without editing files.",
+    "dependencies": [
+        "BepInEx-BepInExPack-5.4.2305"
+    ]
+}

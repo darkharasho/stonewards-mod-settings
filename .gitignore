@@ -7,3 +7,9 @@ build
 *.log
 .superpowers
 .sai/
+
+# .NET
+bin/
+obj/
+*.user
+Local.props
