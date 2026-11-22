@@ -1,0 +1,19 @@
+{
+  "$schema": "https://hml-share.project96.workers.dev/v1/catalog/schema.json",
+  "schema": 1,
+  "mods": [
+    {
+      "id": "mod-settings",
+      "name": "ModSettings",
+      "description": "One in-game settings menu for all your mods. Adds a Mods button to the pause menu for changing any mod's config without editing files.",
+      "games": [
+        "stonewards"
+      ],
+      "icon": "thunderstore/icon.png",
+      "readme": "thunderstore/README.md",
+      "dependencies": [
+        "BepInEx-BepInExPack-5.4.2305"
+      ]
+    }
+  ]
+}
